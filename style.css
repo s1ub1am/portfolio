@@ -6,13 +6,32 @@
 /**
  * copyright 2022 @codewithsadee
  */
+ .whatsapp-contact {
+  text-align: center;
+  padding: 20px;
+}
 
+.whatsapp-btn {
+  background: #25D366 !important;
+  color: white !important;
+  transition: transform 0.3s ease;
+}
+
+.whatsapp-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3);
+}
+
+.whatsapp-btn ion-icon {
+  font-size: 1.2em;
+}
 
 
 
 
 /*-----------------------------------*\
   #CUSTOM PROPERTY
+  
 \*-----------------------------------*/
 
 :root {
