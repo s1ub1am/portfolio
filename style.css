@@ -6,18 +6,7 @@
 /**
  * copyright 2022 @codewithsadee
  */
-.avatar-box {
-  border-radius: 50%;
-  overflow: hidden;
-  width: 100px;
-  height: 100px;
-}
 
-.avatar-box img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
  .whatsapp-contact {
   text-align: center;
   padding: 20px;
