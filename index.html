@@ -41,29 +41,25 @@
 
     <!-- ... existing head section ... -->
 
-<aside class="sidebar" data-sidebar>
-  <div class="sidebar-info">
-    <figure class="avatar-box">
-      <img src="./assets/images/logo.jpeg" alt="Shubham Sabat" width="80">
-    </figure>
-    <div class="info-content">
-      <h1 class="name" title="Shubham Sabat">Shubham Sabat</h1>
-      <p class="title">Computer Science Student</p>
-      <a href="files/resume.pdf" download class="download-btn">
-        <ion-icon name="download-outline"></ion-icon>
-        <span>Resume</span>
-      </a>
-    </div>
-
-    <button class="info_more-btn" data-sidebar-btn>
-      <!-- ... existing button content ... -->
-    </button>
-
-    <button class="info_more-btn" data-sidebar-btn>
-      <span>Show Contacts</span>
-      <ion-icon name="chevron-down"></ion-icon>
-    </button>
-  </div>
+    <aside class="sidebar" data-sidebar>
+      <div class="sidebar-info">
+        <figure class="avatar-box">
+          <img src="images/logo.jpeg" alt="Shubham Sabat" width="80">
+        </figure>
+        <div class="info-content">
+          <h1 class="name" title="Shubham Sabat">Shubham Sabat</h1>
+          <p class="title">Computer Science Student</p>
+          <a href="files/resume.pdf" download class="download-btn">
+            <ion-icon name="download-outline"></ion-icon>
+            <span>Resume</span>
+          </a>
+        </div>
+    
+        <button class="info_more-btn" data-sidebar-btn>
+          <span>Show Contacts</span>
+          <ion-icon name="chevron-down"></ion-icon>
+        </button>
+      </div>
 
   <div class="sidebar-info_more">
     <div class="separator"></div>
@@ -202,7 +198,7 @@
           <ul class="service-list">
             <li class="service-item">
               <div class="service-icon-box">
-                <img src="./assets/images/icon-design.svg" alt="Web design icon" width="40">
+                <img src="images/icon-design.svg" alt="Web design icon" width="40">
               </div>
               <div class="service-content-box">
                 <h4 class="h4 service-item-title">Web Development</h4>
@@ -214,7 +210,7 @@
       
             <li class="service-item">
               <div class="service-icon-box">
-                <img src="./assets/images/icon-dev.svg" alt="Web development icon" width="40">
+                <img src="images/icon-dev.svg" alt="Web development icon" width="40">
               </div>
               <div class="service-content-box">
                 <h4 class="h4 service-item-title">Software Engineering</h4>
@@ -226,7 +222,7 @@
       
             <li class="service-item">
               <div class="service-icon-box">
-                <img src="./assets/images/icon-app.svg" alt="mobile app icon" width="40">
+                <img src="images/icon-app.svg" alt="mobile app icon" width="40">
               </div>
               <div class="service-content-box">
                 <h4 class="h4 service-item-title">UI/UX Design</h4>
@@ -383,7 +379,7 @@
                   <div class="project-item-icon-box">
                     <ion-icon name="eye-outline"></ion-icon>
                   </div>
-                  <img src="./assets/images/urbannest.png" alt="UrbanNest" loading="lazy">
+                  <img src="images/urbannest.png" alt="UrbanNest" loading="lazy">
                 </figure>
                 <h3 class="project-title">UrbanNest</h3>
                 <p class="project-category">Room & Food Subscription Platform</p>
@@ -396,7 +392,7 @@
                   <div class="project-item-icon-box">
                     <ion-icon name="eye-outline"></ion-icon>
                   </div>
-                  <img src="./assets/images/portfolio.png" alt="Portfolio Website" loading="lazy">
+                  <img src="images/portfolio.png" alt="Portfolio Website" loading="lazy">
                 </figure>
                 <h3 class="project-title">Portfolio Website</h3>
                 <p class="project-category">Personal Portfolio</p>
@@ -424,21 +420,14 @@
         </section>
       
         <section class="contact-form">
-          <h3 class="h3 form-title">Contact Form</h3>
-      
-          <form action="https://formspree.io/f/your-formspree-id" method="POST" class="form" data-form>
-            <div class="input-wrapper">
-              <input type="text" name="fullname" class="form-input" placeholder="Full name" required data-form-input>
-              <input type="email" name="email" class="form-input" placeholder="Email address" required data-form-input>
-            </div>
-      
-            <textarea name="message" class="form-input" placeholder="Your Message" required data-form-input></textarea>
-      
-            <button class="form-btn" type="submit" data-form-btn>
-              <ion-icon name="paper-plane"></ion-icon>
-              <span>Send Message</span>
-            </button>
-          </form>
+          <h3 class="h3 form-title">Contact Me</h3>
+        
+          <div class="whatsapp-contact">
+            <a href="https://wa.me/918144602975" class="form-btn whatsapp-btn" target="_blank">
+              <ion-icon name="logo-whatsapp"></ion-icon>
+              <span>Message on WhatsApp</span>
+            </a>
+          </div>
         </section>
       </article>
 
