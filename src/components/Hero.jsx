@@ -23,8 +23,7 @@ const Hero = () => {
                         <span className="text-primary">Shubham</span>
                     </h1>
                     <p className="text-gray-600 dark:text-gray-400 text-lg mb-8 max-w-lg leading-relaxed mx-auto md:mx-0">
-                        Software Developer specializing in Generative AI and Full-Stack Engineering. Currently building enterprise solutions at TCS.
-                    </p>
+Software Developer Trainee with experience in Full-Stack Engineering and emerging AI technologies, focused on learning and contributing to scalable, real-world software solutions.                    </p>
 
                     <div className="flex gap-4 justify-center md:justify-start mb-8">
                         <a href="https://github.com/s1ub1am" target="_blank" className="text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors">
