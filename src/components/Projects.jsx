@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa';
 import urbannestImg from '../assets/urbannest.png';
 import promptfallImg from '../assets/promptfall.jpg';
+import keysniperImg from '../assets/keysniper.png';
 
 const projects = [
     {
@@ -21,6 +22,15 @@ const projects = [
         live: "http://urbannest.42web.io",
         color: "bg-rose-600",
         image: urbannestImg
+    },
+    {
+        title: "KeySniper",
+        desc: "A fast-paced neon typing game. Type words to destroy approaching enemies before they breach your defenses.",
+        tags: ["JavaScript", "HTML/CSS", "Game Dev", "Typing"],
+        github: "https://github.com/s1ub1am/keysniper",
+        live: "https://s1ub1am.github.io/keysniper/",
+        color: "bg-purple-600",
+        image: keysniperImg
     },
     {
         title: "Gesture Arcade",
@@ -58,7 +68,7 @@ const Projects = () => {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ delay: index * 0.1 }}
-                            className="group relative h-72 rounded-xl overflow-hidden cursor-pointer" // Reduced height and rounded-xl
+                            className="group relative h-64 rounded-xl overflow-hidden cursor-pointer" // Reduced height and rounded-xl
                         >
                             {/* Background Image or Color */}
                             {project.image ? (
