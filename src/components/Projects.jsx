@@ -4,6 +4,7 @@ import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa';
 import urbannestImg from '../assets/urbannest.png';
 import promptfallImg from '../assets/promptfall.jpg';
 import keysniperImg from '../assets/keysniper.png';
+import fintrackImg from '../assets/fintrack.png';
 
 const projects = [
     {
@@ -13,6 +14,15 @@ const projects = [
         // No links for internal resource
         color: "bg-indigo-600",
         image: promptfallImg
+    },
+    {
+        title: "FinTrack",
+        desc: "Personal finance tracker to manage wealth. Track expenses, income, and view monthly trends with simplified analytics.",
+        tags: ["React", "Tailwind", "Chart.js", "Vite"],
+        github: "https://github.com/s1ub1am/FinTrack", // Assumed based on pattern and user provided live link
+        live: "https://s1ub1am.github.io/FinTrack/",
+        color: "bg-green-500",
+        image: fintrackImg
     },
     {
         title: "UrbanNest",
@@ -49,9 +59,9 @@ const Projects = () => {
                     initial={{ opacity: 0, y: 10 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6"
+                    className="flex flex-col md:flex-row justify-between items-center md:items-end mb-12 gap-6"
                 >
-                    <div>
+                    <div className="text-center md:text-left">
                         <span className="text-secondary font-bold tracking-wider text-sm uppercase">Portfolio</span>
                         <h2 className="text-3xl md:text-5xl font-bold mt-2 dark:text-white text-gray-900">Featured Projects</h2>
                     </div>
