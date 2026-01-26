@@ -25,6 +25,25 @@ const Navbar = () => {
         setTheme(theme === 'dark' ? 'light' : 'dark');
     };
 
+    const handleNavClick = (href) => {
+        // Close mobile menu
+        setIsOpen(false);
+        // Update hash in URL
+        window.location.hash = href;
+        // Delay scroll to allow menu animation to complete
+        setTimeout(() => {
+            const element = document.querySelector(href);
+            if (element) {
+                const offset = 80; // Height of fixed navbar
+                const elementPosition = element.getBoundingClientRect().top + window.scrollY - offset;
+                window.scrollTo({
+                    top: elementPosition,
+                    behavior: 'smooth'
+                });
+            }
+        }, 300);
+    };
+
     const navLinks = [
         { name: 'About', href: '#about' },
         { name: 'Experience', href: '#experience' },
@@ -46,6 +65,10 @@ const Navbar = () => {
                         <a
                             key={link.name}
                             href={link.href}
+                            onClick={(e) => {
+                                e.preventDefault();
+                                handleNavClick(link.href);
+                            }}
                             className="text-sm font-medium text-gray-500 dark:text-gray-400 hover:text-primary dark:hover:text-white transition-colors"
                         >
                             {link.name}
@@ -89,7 +112,10 @@ const Navbar = () => {
                                 <a
                                     key={link.name}
                                     href={link.href}
-                                    onClick={() => setIsOpen(false)}
+                                    onClick={(e) => {
+                                        e.preventDefault();
+                                        handleNavClick(link.href);
+                                    }}
                                     className="text-gray-900 dark:text-white font-medium"
                                 >
                                     {link.name}
