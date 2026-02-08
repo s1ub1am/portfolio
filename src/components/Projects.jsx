@@ -5,8 +5,18 @@ import urbannestImg from '../assets/urbannest.png';
 import promptfallImg from '../assets/promptfall.jpg';
 import keysniperImg from '../assets/keysniper.png';
 import fintrackImg from '../assets/fintrack.png';
+import elevatecvImg from '../assets/elevatecv.png';
+
 
 const projects = [
+    {
+        title: "ElevateCV",
+        desc: "ElevateCV is a modern, full-stack resume builder application designed to help job seekers create ATS-optimized, professional resumes in minutes.",
+        tags: ["MERN Stack","Tailwind CSS"],
+        github: "https://github.com/s1ub1am/ElevateCV.git", // Assumed based on pattern and user provided live link
+        color: "bg-green-500",
+        image: elevatecvImg
+    },
     {
         title: "PromptFall",
         desc: "A gamified platform to master Prompt Engineering. I built this to help developers understand LLMs better through interactive challenges.",
