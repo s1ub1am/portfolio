@@ -7,16 +7,25 @@ const Experience = () => {
     // Ascending Order: Oldest (Bottom) -> Newest (Top)
     const timeline = [
         {
-            year: "Sept 2025 - Present",
-            role: "Graduate Trainee",
+            year: "Feb 2026 - Present",
+            role: "Gen AI Developer",
             company: "Tata Consultancy Services (Ignite)",
-            desc: "Leading the charge in Gen AI. Building scalable enterprise solutions and mastering the art of prompt engineering.",
+            desc: "Spearheading Generative AI initiatives, building agentic workflows, and pushing the boundaries of what's possible with LLMs.",
             color: "bg-indigo-50 dark:bg-indigo-900/20",
             border: "border-indigo-100 dark:border-indigo-800",
             icon: <FaBriefcase className="text-indigo-600 dark:text-indigo-400" />,
             active: true
         },
-
+        {
+            year: "Sept 2025 - Jan 2026",
+            role: "Graduate Trainee",
+            company: "Tata Consultancy Services (Ignite)",
+            desc: "Started my journey at TCS Ignite. Learned the ropes of enterprise software development and built a solid foundation in full-stack technologies.",
+            color: "bg-emerald-50 dark:bg-emerald-900/20",
+            border: "border-emerald-100 dark:border-emerald-800",
+            icon: <FaBriefcase className="text-emerald-600 dark:text-emerald-400" />,
+            active: false
+        },
     ];
 
     return (

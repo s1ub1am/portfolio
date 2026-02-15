@@ -23,13 +23,16 @@ const About = () => {
 
                         <div className="space-y-6 text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
                             <p>
-                                I am a software engineer with a passion for building scalable systems and intuitive user interfaces.
-                                My background in Computer Science has equipped me with a strong foundation in algorithms and system design.
+                                I’m a software developer who believes good code should be reliable, readable, and useful.
                             </p>
                             <p>
-                                Currently, I am a <strong className="text-gray-900 dark:text-white">Graduate Trainee at TCS Ignite</strong>,
-                                where I am exploring the intersection of enterprise software and Generative AI.
-                                I enjoy solving complex problems and turning ideas into functional, clean code.
+                                I chose Computer Science because I enjoy solving real problems with logic and systems that actually hold up in practice.
+                                Over time, that mindset naturally pushed me toward building things that work beyond demos.
+                            </p>
+                            <p>
+                                Currently, I work as a <strong className="text-gray-900 dark:text-white">GenAI Developer at TCS</strong>,
+                                where I focus on applying Large Language Models to real enterprise use cases.
+                                The work sits at the intersection of engineering and experimentation — turning ideas into systems that teams can depend on.
                             </p>
                         </div>
                     </motion.div>

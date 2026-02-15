@@ -4,6 +4,13 @@ import { FaGraduationCap, FaMapMarkerAlt } from 'react-icons/fa';
 
 const educationData = [
     {
+        institution: "Chandigarh University",
+        location: "Chandigarh, India",
+        degree: "MCA in AIML",
+        year: "2026 - Present",
+        desc: "Pursuing Master of Computer Applications with a specialization in AI & ML to deepen theoretical understanding and practical skills in advanced computing."
+    },
+    {
         institution: "Gayatri Institute of Computer and Management",
         location: "Berhampur, Odisha",
         degree: "B.Sc. in Computer Science",
