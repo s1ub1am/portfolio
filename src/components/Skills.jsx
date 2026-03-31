@@ -34,6 +34,8 @@ const skillCategories = [
         skills: [
             { name: "Python", icon: <FaPython /> },
             { name: "Gen AI (LLMs)", icon: <FaBrain /> }, // Generic Brain for Gen AI
+            { name: "Agentic AI", icon: <FaBrain /> },
+            { name: "LangGraph", icon: <FaCode /> },
             { name: "OpenCV", icon: <SiOpencv /> },
             { name: "Prompt Engineering", icon: <FaBrain /> }
         ]
