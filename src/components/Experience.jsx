@@ -1,97 +1,131 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { FaBriefcase } from 'react-icons/fa';
+import { FaBriefcase, FaCheckCircle } from 'react-icons/fa';
+import { HiSparkles } from 'react-icons/hi2';
 import profileImg from '../assets/profile.png';
 
 const Experience = () => {
-    // Ascending Order: Oldest (Bottom) -> Newest (Top)
     const timeline = [
         {
-            year: "Feb 2026 - Present",
-            role: "Gen AI Developer",
-            company: "Tata Consultancy Services (Ignite)",
-            desc: "Spearheading Generative AI initiatives, building agentic workflows, and pushing the boundaries of what's possible with LLMs.",
-            color: "bg-indigo-50 dark:bg-indigo-900/20",
-            border: "border-indigo-100 dark:border-indigo-800",
-            icon: <FaBriefcase className="text-indigo-600 dark:text-indigo-400" />,
-            active: true
+            year: "Feb 2026 – Present",
+            role: "AIML Engineer",
+            company: "Tata Consultancy Services (TCS)",
+            desc: "Spearheading AIML initiatives—building agentic workflows, LLM pipelines, and pushing the boundaries of what's possible with enterprise AI.",
+            tags: ["LLMs", "Agentic AI", "LangGraph", "Python"],
+            color: "from-blue-500/12 to-sky-500/10",
+            accent: "#1d4ed8",
+            active: true,
         },
         {
-            year: "Sept 2025 - Jan 2026",
+            year: "Sept 2025 – Jan 2026",
             role: "Graduate Trainee",
-            company: "Tata Consultancy Services (Ignite)",
-            desc: "Started my journey at TCS Ignite. Learned the ropes of enterprise software development and built a solid foundation in full-stack technologies.",
-            color: "bg-emerald-50 dark:bg-emerald-900/20",
-            border: "border-emerald-100 dark:border-emerald-800",
-            icon: <FaBriefcase className="text-emerald-600 dark:text-emerald-400" />,
-            active: false
+            company: "Tata Consultancy Services (Ignite Training)",
+            desc: "Completed TCS Ignite training — built a strong foundation in full-stack technologies.",
+            tags: ["Full Stack", "React", "Node.js", "REST APIs"],
+            color: "from-sky-400/12 to-blue-400/10",
+            accent: "#2563eb",
+            active: false,
         },
     ];
 
     return (
-        <section id="experience" className="py-24 bg-white dark:bg-dark overflow-hidden relative">
-            <div className="container mx-auto px-6 relative z-10">
+        <section id="experience" className="py-28 relative overflow-hidden">
+            {/* Decorative */}
+            <div className="absolute left-0 top-1/2 w-64 h-64 bg-blue-400/10 rounded-full blur-[100px] pointer-events-none" />
+
+            <div className="container mx-auto px-6">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    className="text-center mb-20"
+                    className="text-center mb-16"
                 >
-                    <span className="text-secondary font-bold tracking-wider text-sm uppercase mb-2 block">Level Up</span>
-                    <h2 className="text-3xl md:text-4xl font-bold dark:text-white text-gray-900">
-                        My Journey
+                    <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full glass-bright text-neon-blue text-xs font-bold tracking-widest uppercase mb-4">
+                        <span className="w-1.5 h-1.5 rounded-full bg-neon-blue animate-pulse" />
+                        Career
+                    </span>
+                    <h2 className="text-3xl md:text-5xl font-bold text-slate-900">
+                        My <span className="text-gradient">Journey</span>
                     </h2>
                 </motion.div>
 
-                <div className="max-w-3xl mx-auto relative px-4 sm:px-0">
-                    {/* Clean Central Line */}
-                    <div className="absolute left-8 md:left-1/2 top-4 bottom-0 w-0.5 bg-gray-200 dark:bg-gray-800 md:-translate-x-1/2" />
+                <div className="max-w-3xl mx-auto relative">
+                    {/* Timeline line */}
+                    <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-px md:-translate-x-1/2"
+                        style={{ background: 'linear-gradient(to bottom, #1d4ed8, #38bdf8, transparent)' }} />
 
-                    <div className="flex flex-col-reverse gap-12">
+                    <div className="flex flex-col gap-10">
                         {timeline.map((item, index) => (
                             <motion.div
                                 key={index}
-                                initial={{ opacity: 0, y: 30 }}
+                                initial={{ opacity: 0, y: 40 }}
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
-                                transition={{ duration: 0.5, delay: index * 0.1 }}
-                                className={`relative flex flex-col md:flex-row items-center md:justify-between gap-6 md:gap-0 ${index % 2 === 0 ? "md:flex-row-reverse" : ""}`}
+                                transition={{ duration: 0.6, delay: index * 0.15 }}
+                                className={`relative flex flex-col md:flex-row items-start md:items-center gap-6 md:gap-0 ${index % 2 === 0 ? 'md:flex-row-reverse' : ''}`}
                             >
-                                {/* Mobile: Connection Dot */}
-                                <div className="absolute left-8 md:left-1/2 w-4 h-4 bg-white dark:bg-dark border-4 border-gray-300 dark:border-gray-600 rounded-full -translate-x-1/2 z-10 top-8" />
+                                {/* Timeline dot */}
+                                <div className="absolute left-8 md:left-1/2 md:-translate-x-1/2 top-8 z-10">
+                                    <div className="w-4 h-4 rounded-full border-2 border-current"
+                                        style={{ borderColor: item.accent, backgroundColor: '#f7f6f2', boxShadow: `0 0 12px ${item.accent}` }} />
+                                    {item.active && (
+                                        <div className="absolute inset-0 rounded-full animate-ping"
+                                            style={{ backgroundColor: item.accent, opacity: 0.4 }} />
+                                    )}
+                                </div>
 
                                 {/* Card */}
-                                <div className={`w-full md:w-[calc(50%-30px)] pl-20 md:pl-0 ${index % 2 === 0 ? "md:pl-8 text-left" : "md:pr-8 md:text-right"}`}>
-                                    <div className={`p-6 rounded-2xl border-2 ${item.border} ${item.color} relative group hover:shadow-lg transition-shadow duration-300`}>
-
-                                        {/* Active Notification Badge (PFP) */}
+                                <div className={`w-full md:w-[calc(50%-32px)] pl-20 md:pl-0 ${index % 2 === 0 ? 'md:pl-8' : 'md:pr-8'}`}>
+                                    <motion.div
+                                        whileHover={{ scale: 1.02, y: -4 }}
+                                        transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+                                        className={`relative glass rounded-2xl p-6 border border-white/5 bg-gradient-to-br ${item.color} overflow-hidden group`}
+                                    >
+                                        {/* Active badge */}
                                         {item.active && (
-                                            <div className="absolute -top-4 -right-4 w-12 h-12 rounded-full border-4 border-white dark:border-dark shadow-md overflow-hidden z-20 animate-[bounce_2s_infinite]">
-                                                <img src={profileImg} alt="Active" className="w-full h-full object-cover" />
-                                                <div className="absolute bottom-0 right-0 w-3 h-3 bg-green-500 rounded-full border-2 border-white" />
+                                            <div className="absolute top-4 right-4 flex items-center gap-2">
+                                                <div className="w-10 h-10 rounded-full overflow-hidden border-2 border-indigo-500/60 shadow-lg shadow-indigo-500/30">
+                                                    <img src={profileImg} alt="Active" className="w-full h-full object-cover" />
+                                                </div>
+                                                <span className="flex items-center gap-1 px-2 py-0.5 rounded-full bg-green-500/20 text-green-400 text-[10px] font-bold">
+                                                    <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
+                                                    NOW
+                                                </span>
                                             </div>
                                         )}
 
-                                        <span className={`inline-block px-3 py-1 rounded-full text-xs font-bold mb-3 ${item.active ? "bg-indigo-100 text-indigo-700" : "bg-emerald-100 text-emerald-700"}`}>
+                                        {/* Year pill */}
+                                        <span className="inline-flex items-center gap-1.5 text-xs font-bold px-3 py-1 rounded-full mb-3"
+                                            style={{ backgroundColor: `${item.accent}20`, color: item.accent }}>
+                                            <FaBriefcase size={10} />
                                             {item.year}
                                         </span>
 
-                                        <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-1">{item.role}</h3>
-                                        <h4 className="text-sm font-semibold text-secondary uppercase tracking-tight mb-3 flex items-center gap-2 md:justify-end">
-                                            {/* Icon logic requires conditional flex alignment, simplified here: */}
-                                            <span className={`flex items-center gap-2 ${index % 2 !== 0 ? "md:flex-row-reverse" : ""}`}>
-                                                {item.icon} {item.company}
-                                            </span>
-                                        </h4>
-                                        <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed">
-                                            {item.desc}
+                                        <h3 className="text-xl font-bold text-slate-900 mb-1">{item.role}</h3>
+                                        <p className="text-sm font-semibold text-slate-600 mb-3 flex items-center gap-1.5">
+                                            <HiSparkles size={12} style={{ color: item.accent }} />
+                                            {item.company}
                                         </p>
-                                    </div>
+                                        <p className="text-slate-600 text-sm leading-relaxed mb-4">{item.desc}</p>
+
+                                        {/* Tags */}
+                                        <div className="flex flex-wrap gap-2">
+                                            {item.tags.map((tag, i) => (
+                                                <span key={i} className="px-2.5 py-1 rounded-full text-[10px] font-bold tracking-wider glass border border-white/10"
+                                                    style={{ color: item.accent }}>
+                                                    {tag}
+                                                </span>
+                                            ))}
+                                        </div>
+
+                                        {/* Glow effect */}
+                                        <div className="absolute -bottom-10 -right-10 w-40 h-40 rounded-full blur-[60px] opacity-20 pointer-events-none"
+                                            style={{ backgroundColor: item.accent }} />
+                                    </motion.div>
                                 </div>
 
-                                {/* Spacer for opposite side alignment */}
-                                <div className="hidden md:block md:w-[calc(50%-30px)]" />
-
+                                {/* Spacer */}
+                                <div className="hidden md:block md:w-[calc(50%-32px)]" />
                             </motion.div>
                         ))}
                     </div>

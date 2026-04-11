@@ -1,5 +1,5 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useRef, useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa';
 import urbannestImg from '../assets/urbannest.png';
 import promptfallImg from '../assets/promptfall.jpg';
@@ -7,132 +7,227 @@ import keysniperImg from '../assets/keysniper.png';
 import fintrackImg from '../assets/fintrack.png';
 import elevatecvImg from '../assets/elevatecv.png';
 
-
 const projects = [
     {
         title: "ElevateCV",
-        desc: "ElevateCV is a modern, full-stack resume builder application designed to help job seekers create ATS-optimized, professional resumes in minutes.",
-        tags: ["MERN Stack","Tailwind CSS"],
-        github: "https://github.com/s1ub1am/ElevateCV.git", // Assumed based on pattern and user provided live link
-        color: "bg-green-500",
-        image: elevatecvImg
+        desc: "A modern full-stack resume builder that helps job seekers create ATS-optimized professional resumes in minutes with live preview.",
+        tags: ["MERN Stack", "Tailwind CSS"],
+        github: "https://github.com/s1ub1am/ElevateCV.git",
+        category: "Web",
+        accent: "#10b981",
+        image: elevatecvImg,
+        featured: true,
     },
     {
         title: "PromptFall",
-        desc: "A gamified platform to master Prompt Engineering. I built this to help developers understand LLMs better through interactive challenges.",
-        tags: ["Gen AI", "React", "Python", "PostgreSQL"],
-        // No links for internal resource
-        color: "bg-indigo-600",
-        image: promptfallImg
+        desc: "A gamified platform to master Prompt Engineering through interactive challenges. Helps developers understand LLMs better.",
+        tags: ["AIML", "React", "Python", "PostgreSQL"],
+        category: "AI",
+        accent: "#7c3aed",
+        image: promptfallImg,
+        featured: true,
     },
     {
         title: "FinTrack",
-        desc: "Personal finance tracker to manage wealth. Track expenses, income, and view monthly trends with simplified analytics.",
+        desc: "Personal finance tracker with expense management, income tracking, and monthly trend analytics with simplified charts.",
         tags: ["React", "Tailwind", "Chart.js", "Vite"],
-        github: "https://github.com/s1ub1am/FinTrack", // Assumed based on pattern and user provided live link
+        github: "https://github.com/s1ub1am/FinTrack",
         live: "https://s1ub1am.github.io/FinTrack/",
-        color: "bg-green-500",
-        image: fintrackImg
+        category: "Web",
+        accent: "#0f766e",
+        image: fintrackImg,
     },
     {
         title: "UrbanNest",
-        desc: "Complete accommodation solution. Connects students with vetted hostels and food subscriptions. Handles payments and fast approvals.",
-        tags: ["PHP", "MySQL", "HTML/CSS", "JS", "Razorpay"],
+        desc: "Complete accommodation solution connecting students with vetted hostels and food subscriptions with payments and approvals.",
+        tags: ["PHP", "MySQL", "HTML/CSS", "Razorpay"],
         github: "https://github.com/s1ub1am",
         live: "http://urbannest.42web.io",
-        color: "bg-rose-600",
-        image: urbannestImg
+        category: "Web",
+        accent: "#f97316",
+        image: urbannestImg,
     },
     {
         title: "KeySniper",
-        desc: "A fast-paced neon typing game. Type words to destroy approaching enemies before they breach your defenses.",
-        tags: ["JavaScript", "HTML/CSS", "Game Dev", "Typing"],
+        desc: "A fast-paced neon typing game where you type words to destroy approaching enemies before they breach your defenses.",
+        tags: ["JavaScript", "HTML/CSS", "Game Dev"],
         github: "https://github.com/s1ub1am/keysniper",
         live: "https://s1ub1am.github.io/keysniper/",
-        color: "bg-purple-600",
-        image: keysniperImg
+        category: "Game",
+        accent: "#a855f7",
+        image: keysniperImg,
     },
     {
         title: "Gesture Arcade",
-        desc: "Interactive game collection controlled entirely by hand gestures. Uses Computer Vision to map physical movements to in-game actions.",
+        desc: "Interactive game collection controlled entirely by hand gestures using Computer Vision to map physical movements to in-game actions.",
         tags: ["Python", "Pygame", "OpenCV", "MediaPipe"],
-        // No links (Private)
-        color: "bg-orange-600"
+        category: "AI",
+        accent: "#e11d48",
     }
 ];
 
-const Projects = () => {
+const filters = ['All', 'AI', 'Web', 'Game'];
+
+const ProjectCard = ({ project, index }) => {
+    const cardRef = useRef(null);
+    const [tilt, setTilt] = useState({ x: 0, y: 0 });
+
+    const handleMouseMove = (e) => {
+        const rect = cardRef.current?.getBoundingClientRect();
+        if (!rect) return;
+        const x = ((e.clientX - rect.left) / rect.width - 0.5) * 14;
+        const y = ((e.clientY - rect.top) / rect.height - 0.5) * 14;
+        setTilt({ x, y });
+    };
+    const handleMouseLeave = () => setTilt({ x: 0, y: 0 });
+
     return (
-        <section id="projects" className="py-24 bg-white dark:bg-dark">
+        <motion.div
+            ref={cardRef}
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 30 }}
+            transition={{ delay: index * 0.08, duration: 0.5 }}
+            onMouseMove={handleMouseMove}
+            onMouseLeave={handleMouseLeave}
+            style={{
+                transform: `perspective(700px) rotateX(${-tilt.y * 0.5}deg) rotateY(${tilt.x * 0.5}deg)`,
+                transition: 'transform 0.15s ease',
+            }}
+            className={`group relative overflow-hidden rounded-2xl cursor-pointer ${project.featured ? 'md:col-span-1' : ''}`}
+        >
+            {/* Background */}
+            <div className="absolute inset-0 glass border border-slate-200/60 group-hover:border-slate-300/60 transition-colors duration-300" />
+            {project.image ? (
+                <img
+                    src={project.image}
+                    alt={project.title}
+                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-90 group-hover:opacity-100"
+                />
+            ) : (
+                <div className="absolute inset-0 opacity-20" style={{ backgroundColor: project.accent }} />
+            )}
+
+            {/* Gradient overlay */}
+            <div className="absolute inset-0 bg-gradient-to-t from-white/35 via-white/10 to-transparent" />
+
+            {/* Neon glow on hover */}
+            <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl"
+                style={{ boxShadow: `inset 0 0 30px ${project.accent}20, 0 0 30px ${project.accent}20` }} />
+
+            {/* Content */}
+            <div className="relative z-10 h-64 flex flex-col justify-between p-6">
+                {/* Top links */}
+                <div className="flex justify-between items-start">
+                    <span className="px-2.5 py-1 rounded-full glass border border-white/10 text-[10px] font-bold tracking-wider"
+                        style={{ color: project.accent }}>
+                        {project.category}
+                    </span>
+                    <div className="flex gap-2 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
+                        {project.github && (
+                            <a href={project.github} target="_blank" rel="noopener noreferrer"
+                                className="w-9 h-9 rounded-xl glass flex items-center justify-center text-slate-700 hover:text-neon-blue transition-colors hover:neon-glow"
+                                onClick={(e) => e.stopPropagation()}>
+                                <FaGithub size={16} />
+                            </a>
+                        )}
+                        {project.live && (
+                            <a href={project.live} target="_blank" rel="noopener noreferrer"
+                                className="w-9 h-9 rounded-xl glass flex items-center justify-center text-slate-700 hover:text-neon-cyan transition-colors hover:neon-glow-cyan"
+                                onClick={(e) => e.stopPropagation()}>
+                                <FaExternalLinkAlt size={14} />
+                            </a>
+                        )}
+                    </div>
+                </div>
+
+                {/* Bottom info */}
+                <div>
+                    <div className="flex flex-wrap gap-1.5 mb-3">
+                        {project.tags.slice(0, 3).map((tag, i) => (
+                            <span key={i} className="px-2 py-0.5 rounded-md glass text-[10px] font-bold tracking-wider text-slate-600">
+                                {tag}
+                            </span>
+                        ))}
+                    </div>
+                    <h3 className="text-xl font-bold text-slate-900 mb-1.5 group-hover:text-gradient transition-all duration-300">
+                        {project.title}
+                    </h3>
+                    <p className="text-slate-600 text-sm leading-relaxed line-clamp-2 opacity-0 h-0 group-hover:opacity-100 group-hover:h-auto transition-all duration-300">
+                        {project.desc}
+                    </p>
+                </div>
+            </div>
+
+            {/* Bottom accent line */}
+            <div className="absolute bottom-0 left-0 right-0 h-0.5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                style={{ background: `linear-gradient(90deg, transparent, ${project.accent}, transparent)` }} />
+        </motion.div>
+    );
+};
+
+const Projects = () => {
+    const [filter, setFilter] = useState('All');
+
+    const filtered = filter === 'All' ? projects : projects.filter(p => p.category === filter);
+
+    return (
+        <section id="projects" className="py-28 relative overflow-hidden">
+            {/* Blob */}
+            <div className="absolute right-0 bottom-0 w-72 h-72 bg-blue-400/10 rounded-full blur-[100px] pointer-events-none" />
+
             <div className="container mx-auto px-6">
                 <motion.div
-                    initial={{ opacity: 0, y: 10 }}
+                    initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     className="flex flex-col md:flex-row justify-between items-center md:items-end mb-12 gap-6"
                 >
-                    <div className="text-center md:text-left">
-                        <span className="text-secondary font-bold tracking-wider text-sm uppercase">Portfolio</span>
-                        <h2 className="text-3xl md:text-5xl font-bold mt-2 dark:text-white text-gray-900">Featured Projects</h2>
+                    <div>
+                        <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full glass-bright text-neon-blue text-xs font-bold tracking-widest uppercase mb-4">
+                            <span className="w-1.5 h-1.5 rounded-full bg-neon-blue animate-pulse" />
+                            Portfolio
+                        </span>
+                        <h2 className="text-3xl md:text-5xl font-bold text-slate-900">
+                            Featured <span className="text-gradient">Projects</span>
+                        </h2>
                     </div>
-                    <a href="https://github.com/s1ub1am" className="text-gray-600 dark:text-gray-400 hover:text-primary flex items-center gap-2 transition-colors">
-                        View all on GitHub <FaGithub />
+                    <a href="https://github.com/s1ub1am" target="_blank" rel="noopener noreferrer"
+                        className="flex items-center gap-2 text-sm text-slate-600 hover:text-neon-blue transition-colors glass px-4 py-2 rounded-xl border border-slate-200/60 hover:border-blue-500/30">
+                        <FaGithub size={16} />
+                        View all on GitHub
                     </a>
                 </motion.div>
 
-                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {projects.map((project, index) => (
-                        <motion.div
-                            key={index}
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: index * 0.1 }}
-                            className="group relative h-64 rounded-xl overflow-hidden cursor-pointer" // Reduced height and rounded-xl
+                {/* Filter Tabs */}
+                <div className="flex gap-3 mb-8 flex-wrap">
+                    {filters.map((f) => (
+                        <motion.button
+                            key={f}
+                            onClick={() => setFilter(f)}
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.95 }}
+                            className={`px-4 py-2 rounded-xl text-sm font-semibold transition-all duration-300 ${filter === f
+                                ? 'shimmer-btn text-white shadow-lg shadow-blue-500/20'
+                                : 'glass border border-slate-200/60 text-slate-600 hover:text-slate-900 hover:border-slate-300/60'
+                                }`}
                         >
-                            {/* Background Image or Color */}
-                            {project.image ? (
-                                <img
-                                    src={project.image}
-                                    alt={project.title}
-                                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                                />
-                            ) : (
-                                <div className={`absolute inset-0 ${project.color} opacity-90 transition-transform duration-700 group-hover:scale-105`} />
-                            )}
-
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent" />
-
-                            {/* Links (Icons) */}
-                            <div className="absolute top-4 right-4 flex gap-3 z-20">
-                                {project.github && (
-                                    <a href={project.github} target="_blank" rel="noopener noreferrer" className="p-2 bg-white/20 backdrop-blur-md rounded-full text-white hover:bg-white hover:text-black transition-all" title="View Code">
-                                        <FaGithub size={18} />
-                                    </a>
-                                )}
-                                {project.live && (
-                                    <a href={project.live} target="_blank" rel="noopener noreferrer" className="p-2 bg-white/20 backdrop-blur-md rounded-full text-white hover:bg-white hover:text-black transition-all" title="Live Demo">
-                                        <FaExternalLinkAlt size={18} />
-                                    </a>
-                                )}
-                            </div>
-
-                            <div className="absolute bottom-0 left-0 p-6 w-full">
-                                <div className="flex flex-wrap gap-2 mb-3 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
-                                    {project.tags.map((tag, i) => (
-                                        <span key={i} className="px-2 py-0.5 bg-white/20 backdrop-blur-sm text-white text-[10px] uppercase font-bold tracking-wider rounded-sm">
-                                            {tag}
-                                        </span>
-                                    ))}
-                                </div>
-                                <h3 className="text-2xl font-bold text-white mb-1 group-hover:text-primary-foreground transition-colors">{project.title}</h3>
-                                <p className="text-gray-200 text-sm line-clamp-2 opacity-80 group-hover:opacity-100 transition-opacity duration-300">
-                                    {project.desc}
-                                </p>
-                            </div>
-                        </motion.div>
+                            {f}
+                        </motion.button>
                     ))}
                 </div>
+
+                {/* Grid */}
+                <AnimatePresence mode="wait">
+                    <motion.div
+                        key={filter}
+                        className="grid md:grid-cols-2 lg:grid-cols-3 gap-5"
+                    >
+                        {filtered.map((project, index) => (
+                            <ProjectCard key={project.title} project={project} index={index} />
+                        ))}
+                    </motion.div>
+                </AnimatePresence>
             </div>
         </section>
     );

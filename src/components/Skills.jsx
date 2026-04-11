@@ -1,92 +1,179 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import {
-    FaReact, FaJs, FaHtml5, FaCss3Alt, FaNodeJs, FaPython,
+    FaReact, FaJs, FaHtml5, FaNodeJs, FaPython,
     FaGitAlt, FaLinux, FaBrain, FaCode
 } from 'react-icons/fa';
 import {
     SiTailwindcss, SiFramer, SiExpress, SiDjango, SiPostgresql,
-    SiOpencv, SiPostman, SiVite
+    SiOpencv, SiPostman, SiMongodb, SiVite
 } from 'react-icons/si';
 
-const skillCategories = [
+const categories = [
     {
         title: "Frontend",
+        emoji: "🎨",
+        accent: "#1d4ed8",
         skills: [
-            { name: "React", icon: <FaReact /> },
-            { name: "JavaScript (ES6+)", icon: <FaJs /> },
-            { name: "Tailwind CSS", icon: <SiTailwindcss /> },
-            { name: "Framer Motion", icon: <SiFramer /> },
-            { name: "HTML5/CSS3", icon: <FaHtml5 /> }
+            { name: "React", icon: <FaReact />, level: 90 },
+            { name: "JavaScript", icon: <FaJs />, level: 88 },
+            { name: "Tailwind CSS", icon: <SiTailwindcss />, level: 85 },
+            { name: "Framer Motion", icon: <SiFramer />, level: 80 },
+            { name: "HTML5/CSS3", icon: <FaHtml5 />, level: 92 },
         ]
     },
     {
         title: "Backend",
+        emoji: "⚙️",
+        accent: "#38bdf8",
         skills: [
-            { name: "Node.js", icon: <FaNodeJs /> },
-            { name: "Express", icon: <SiExpress /> },
-            { name: "Django", icon: <SiDjango /> },
-            { name: "PostgreSQL", icon: <SiPostgresql /> },
+            { name: "Node.js", icon: <FaNodeJs />, level: 82 },
+            { name: "Express", icon: <SiExpress />, level: 80 },
+            { name: "Django", icon: <SiDjango />, level: 75 },
+            { name: "PostgreSQL", icon: <SiPostgresql />, level: 78 },
+            { name: "MongoDB", icon: <SiMongodb />, level: 80 },
         ]
     },
     {
-        title: "AI & ML",
+        title: "AIML",
+        emoji: "🤖",
+        accent: "#6366f1",
         skills: [
-            { name: "Python", icon: <FaPython /> },
-            { name: "Gen AI (LLMs)", icon: <FaBrain /> }, // Generic Brain for Gen AI
-            { name: "Agentic AI", icon: <FaBrain /> },
-            { name: "LangGraph", icon: <FaCode /> },
-            { name: "OpenCV", icon: <SiOpencv /> },
-            { name: "Prompt Engineering", icon: <FaBrain /> }
+            { name: "Python", icon: <FaPython />, level: 90 },
+            { name: "Gen AI (LLMs)", icon: <FaBrain />, level: 88 },
+            { name: "Agentic AI", icon: <FaBrain />, level: 85 },
+            { name: "LangGraph", icon: <FaCode />, level: 78 },
+            { name: "OpenCV", icon: <SiOpencv />, level: 72 },
+            { name: "Prompt Eng.", icon: <FaBrain />, level: 90 },
         ]
     },
     {
-        title: "Tools & DevOps",
+        title: "Tools",
+        emoji: "🛠️",
+        accent: "#1d4ed8",
         skills: [
-            { name: "Git/GitHub", icon: <FaGitAlt /> },
-            { name: "VS Code", icon: <FaCode /> },
-            { name: "Postman", icon: <SiPostman /> },
-            { name: "Vite", icon: <SiVite /> },
-            { name: "Linux", icon: <FaLinux /> }
+            { name: "Git/GitHub", icon: <FaGitAlt />, level: 88 },
+            { name: "VS Code", icon: <FaCode />, level: 95 },
+            { name: "Postman", icon: <SiPostman />, level: 85 },
+            { name: "Vite", icon: <SiVite />, level: 82 },
+            { name: "Linux", icon: <FaLinux />, level: 75 },
         ]
     }
 ];
 
 const Skills = () => {
+    const [active, setActive] = useState(0);
+
     return (
-        <section id="skills" className="py-24 bg-gray-50 dark:bg-surface border-t border-gray-100 dark:border-gray-800">
+        <section id="skills" className="py-28 relative overflow-hidden">
+            {/* BG blobs */}
+            <div className="absolute left-1/2 top-0 w-96 h-96 bg-emerald-400/10 rounded-full blur-[120px] pointer-events-none -translate-x-1/2" />
+
             <div className="container mx-auto px-6">
                 <motion.div
-                    initial={{ opacity: 0, y: 10 }}
+                    initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    className="text-center mb-16"
+                    className="text-center mb-14"
                 >
-                    <h2 className="text-3xl md:text-4xl font-bold dark:text-white text-gray-900">Technical Arsenal</h2>
+                    <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full glass-bright text-neon-cyan text-xs font-bold tracking-widest uppercase mb-4">
+                        <span className="w-1.5 h-1.5 rounded-full bg-neon-cyan animate-pulse" />
+                        Capabilities
+                    </span>
+                    <h2 className="text-3xl md:text-5xl font-bold text-slate-900">
+                        Technical <span className="text-gradient">Arsenal</span>
+                    </h2>
                 </motion.div>
 
-                <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-                    {skillCategories.map((category, index) => (
-                        <motion.div
-                            key={index}
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: index * 0.1 }}
-                            className="bg-white dark:bg-dark p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-800 hover:border-primary/30 transition-colors"
+                {/* Category Tabs */}
+                <div className="flex flex-wrap justify-center gap-3 mb-10">
+                    {categories.map((cat, i) => (
+                        <motion.button
+                            key={i}
+                            onClick={() => setActive(i)}
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.95 }}
+                            className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-semibold transition-all duration-300 ${active === i
+                                ? 'text-slate-900 neon-glow'
+                                : 'glass border border-slate-200/60 text-slate-600 hover:text-slate-900'
+                                }`}
+                            style={active === i ? {
+                                backgroundColor: `${cat.accent}20`,
+                                borderColor: `${cat.accent}60`,
+                                boxShadow: `0 0 20px ${cat.accent}40`,
+                                border: `1px solid ${cat.accent}60`
+                            } : {}}
                         >
-                            <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-4">{category.title}</h3>
-                            <div className="flex flex-wrap gap-2">
-                                {category.skills.map((skill, i) => (
-                                    <span key={i} className="flex items-center gap-2 px-3 py-1.5 bg-gray-50 dark:bg-surface text-gray-700 dark:text-gray-300 font-medium rounded-lg text-xs border border-gray-200 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors cursor-default">
-                                        <span className="text-primary text-sm">{skill.icon}</span>
-                                        {skill.name}
-                                    </span>
-                                ))}
-                            </div>
-                        </motion.div>
+                            {cat.emoji} {cat.title}
+                        </motion.button>
                     ))}
                 </div>
+
+                {/* Skills Panel */}
+                <AnimatePresence mode="wait">
+                    <motion.div
+                        key={active}
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -20 }}
+                        transition={{ duration: 0.3 }}
+                    >
+                        {/* Skill chips */}
+                        <div className="flex flex-wrap justify-center gap-3 mb-10">
+                            {categories[active].skills.map((skill, i) => (
+                                <motion.div
+                                    key={i}
+                                    initial={{ opacity: 0, scale: 0.8 }}
+                                    animate={{ opacity: 1, scale: 1 }}
+                                    transition={{ delay: i * 0.06 }}
+                                    whileHover={{ scale: 1.08, y: -4 }}
+                                    className="skill-chip flex items-center gap-2.5 px-4 py-2.5 rounded-xl cursor-default"
+                                    style={{ '--chip-accent': categories[active].accent }}
+                                >
+                                    <span style={{ color: categories[active].accent, fontSize: '1rem' }}>
+                                        {skill.icon}
+                                    </span>
+                                    <span className="text-sm font-medium text-slate-700">{skill.name}</span>
+                                </motion.div>
+                            ))}
+                        </div>
+
+                        {/* Skill bars */}
+                        <div className="max-w-2xl mx-auto space-y-4">
+                            {categories[active].skills.map((skill, i) => (
+                                <motion.div
+                                    key={i}
+                                    initial={{ opacity: 0, x: -20 }}
+                                    animate={{ opacity: 1, x: 0 }}
+                                    transition={{ delay: i * 0.08 }}
+                                    className="glass rounded-xl p-4 border border-white/5"
+                                >
+                                    <div className="flex justify-between items-center mb-2">
+                                        <div className="flex items-center gap-2">
+                                            <span style={{ color: categories[active].accent }}>{skill.icon}</span>
+                                            <span className="text-sm font-medium text-slate-700">{skill.name}</span>
+                                        </div>
+                                        <span className="text-xs font-bold" style={{ color: categories[active].accent }}>
+                                            {skill.level}%
+                                        </span>
+                                    </div>
+                                    <div className="h-1.5 bg-slate-200/80 rounded-full overflow-hidden">
+                                        <motion.div
+                                            initial={{ width: 0 }}
+                                            animate={{ width: `${skill.level}%` }}
+                                            transition={{ delay: i * 0.08 + 0.2, duration: 0.8, ease: 'easeOut' }}
+                                            className="h-full rounded-full progress-bar-fill"
+                                            style={{
+                                                background: `linear-gradient(90deg, ${categories[active].accent}, ${categories[active].accent}90)`,
+                                                boxShadow: `0 0 8px ${categories[active].accent}60`
+                                            }}
+                                        />
+                                    </div>
+                                </motion.div>
+                            ))}
+                        </div>
+                    </motion.div>
+                </AnimatePresence>
             </div>
         </section>
     );
