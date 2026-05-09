@@ -25,12 +25,12 @@ const StatCard = ({ value, suffix, label, color, delay, shouldCount }) => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay }}
-            className="glass rounded-2xl p-6 border border-white/5 card-hover group"
+            className="glass rounded-2xl p-6 border border-slate-200/60 card-hover group"
         >
-            <div className={`text-4xl font-bold font-display ${color} mb-1`}>
+            <div className={`text-4xl font-semibold font-display ${color} mb-1`}>
                 {num}{suffix}
             </div>
-            <div className="text-sm text-slate-400 font-medium">{label}</div>
+            <div className="text-sm text-slate-500 font-medium">{label}</div>
         </motion.div>
     );
 };
@@ -65,10 +65,7 @@ const About = () => {
     const inView = useInView(ref, { once: true, margin: '-100px' });
 
     return (
-        <section id="about" className="py-28 relative overflow-hidden">
-            {/* decorative blobs */}
-            <div className="absolute top-20 right-0 w-72 h-72 bg-blue-400/10 rounded-full blur-[100px] pointer-events-none" />
-            <div className="absolute bottom-10 left-0 w-64 h-64 bg-sky-300/10 rounded-full blur-[80px] pointer-events-none" />
+        <section id="about" className="section-shell py-28">
 
             <div className="container mx-auto px-6">
                 <div className="grid md:grid-cols-2 gap-16 items-center">
@@ -78,13 +75,13 @@ const About = () => {
                         initial={{ opacity: 0, x: -40 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
-                        transition={{ duration: 0.7 }}
+                        transition={{ duration: 0.7, ease: 'easeOut', delay: 0.08 }}
                     >
-                        <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full glass-bright text-neon-blue text-xs font-bold tracking-widest uppercase mb-6">
-                            <span className="w-1.5 h-1.5 rounded-full bg-neon-blue animate-pulse" />
+                        <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full glass-bright text-slate-700 text-xs font-semibold tracking-widest uppercase mb-6">
+                            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
                             About Me
                         </span>
-                        <h2 className="text-4xl md:text-5xl font-bold mb-8 leading-tight text-slate-900">
+                        <h2 className="text-4xl md:text-5xl font-semibold mb-8 leading-tight text-slate-900 font-display">
                             Building with{' '}
                             <span className="text-gradient">purpose</span>
                             <br />& <span className="text-gradient-gold">precision</span>.
@@ -99,10 +96,11 @@ const About = () => {
                             </p>
                             <p>
                                 Currently, I work as a{' '}
-                                <span className="text-neon-blue font-semibold">AIML Engineer at TCS</span>,
+                                <span className="text-slate-900 font-semibold">AI Engineer at TCS</span>,
                                 applying Large Language Models to enterprise use cases—turning cutting-edge research into systems teams can actually depend on.
                             </p>
                         </div>
+
 
                         {/* Quote block */}
                         <motion.div
@@ -110,9 +108,9 @@ const About = () => {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ delay: 0.4 }}
-                            className="mt-8 glass rounded-xl p-4 border-l-2 border-neon-cyan"
+                            className="mt-8 glass rounded-xl p-4 border-l-2 border-emerald-500"
                         >
-                            <p className="font-mono text-sm text-neon-cyan">
+                            <p className="font-mono text-sm text-slate-700">
                                 <span className="text-slate-500">$</span> philosophy --quote
                             </p>
                             <p className="text-slate-600 italic mt-1 text-sm">
@@ -122,12 +120,18 @@ const About = () => {
                     </motion.div>
 
                     {/* Right: Stats */}
-                    <div ref={ref}>
+                    <motion.div
+                        ref={ref}
+                        initial={{ opacity: 0, x: 40 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.7, ease: 'easeOut', delay: 0.12 }}
+                    >
                         <div className="grid grid-cols-2 gap-4">
-                            <StatCard value="1" suffix="+" label="Years of Experience" color="text-neon-blue" delay={0.1} shouldCount={inView} />
-                            <StatCard value="2" suffix="+" label="Projects Shipped" color="text-neon-purple" delay={0.2} shouldCount={inView} />
-                            <StatCard value="2" suffix="+" label="AIML Systems Built" color="text-neon-cyan" delay={0.3} shouldCount={inView} />
-                            <StatCard value="100" suffix="%" label="Passion Guaranteed" color="text-neon-green" delay={0.4} shouldCount={inView} />
+                            <StatCard value="7" suffix="+" label="Months of Experience" color="text-neon-blue" delay={0.1} shouldCount={inView} />
+                            <StatCard value="2" suffix="+" label="Projects Built" color="text-gradient-gold" delay={0.2} shouldCount={inView} />
+                            <StatCard value="2" suffix="+" label="AI Workflows Deployed" color="text-neon-cyan" delay={0.3} shouldCount={inView} />
+                            <StatCard value="100" suffix="%" label="Quality Focus" color="text-neon-green" delay={0.4} shouldCount={inView} />
                         </div>
 
                         {/* Specialty cards */}
@@ -135,19 +139,19 @@ const About = () => {
                             <TiltCard>
                                 <div className="glass rounded-2xl p-5 border border-blue-500/20 hover:border-blue-500/40 transition-colors h-full">
                                     <div className="text-2xl mb-2">🤖</div>
-                                    <h3 className="text-slate-900 font-bold mb-1">AIML</h3>
+                                    <h3 className="text-slate-900 font-semibold mb-1">AIML</h3>
                                     <p className="text-slate-500 text-xs">LLMs & Agents</p>
                                 </div>
                             </TiltCard>
                             <TiltCard>
                                 <div className="glass rounded-2xl p-5 border border-amber-500/20 hover:border-amber-500/40 transition-colors h-full">
                                     <div className="text-2xl mb-2">⚡</div>
-                                    <h3 className="text-slate-900 font-bold mb-1">Full Stack</h3>
+                                    <h3 className="text-slate-900 font-semibold mb-1">Full Stack</h3>
                                     <p className="text-slate-500 text-xs">MERN & Django</p>
                                 </div>
                             </TiltCard>
                         </div>
-                    </div>
+                    </motion.div>
                 </div>
             </div>
         </section>

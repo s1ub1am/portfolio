@@ -11,7 +11,7 @@ export default {
                 primary: "#6366f1",      // Indigo 500
                 secondary: "#e11d48",    // Rose 600
                 dark: "#050816",         // Deep space black
-                light: "#f8fafc",
+                light: "#efe8de",
                 surface: "#0d1224",      // Dark navy surface
                 neonBlue: "#818cf8",
                 neonCyan: "#22d3ee",
@@ -20,9 +20,9 @@ export default {
                 cardBg: "#0d1224",
             },
             fontFamily: {
-                sans: ['Work Sans', 'sans-serif'],
+                sans: ['Manrope', 'sans-serif'],
                 mono: ['JetBrains Mono', 'monospace'],
-                display: ['DM Serif Display', 'serif'],
+                display: ['Fraunces', 'serif'],
             },
             keyframes: {
                 float: {

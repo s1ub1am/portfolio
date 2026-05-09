@@ -13,7 +13,7 @@ const categories = [
     {
         title: "Frontend",
         emoji: "🎨",
-        accent: "#1d4ed8",
+        accent: "#0f766e",
         skills: [
             { name: "React", icon: <FaReact />, level: 90 },
             { name: "JavaScript", icon: <FaJs />, level: 88 },
@@ -25,7 +25,7 @@ const categories = [
     {
         title: "Backend",
         emoji: "⚙️",
-        accent: "#38bdf8",
+        accent: "#1d4ed8",
         skills: [
             { name: "Node.js", icon: <FaNodeJs />, level: 82 },
             { name: "Express", icon: <SiExpress />, level: 80 },
@@ -37,7 +37,7 @@ const categories = [
     {
         title: "AIML",
         emoji: "🤖",
-        accent: "#6366f1",
+        accent: "#0b7285",
         skills: [
             { name: "Python", icon: <FaPython />, level: 90 },
             { name: "Gen AI (LLMs)", icon: <FaBrain />, level: 88 },
@@ -50,7 +50,7 @@ const categories = [
     {
         title: "Tools",
         emoji: "🛠️",
-        accent: "#1d4ed8",
+        accent: "#b45309",
         skills: [
             { name: "Git/GitHub", icon: <FaGitAlt />, level: 88 },
             { name: "VS Code", icon: <FaCode />, level: 95 },
@@ -65,9 +65,7 @@ const Skills = () => {
     const [active, setActive] = useState(0);
 
     return (
-        <section id="skills" className="py-28 relative overflow-hidden">
-            {/* BG blobs */}
-            <div className="absolute left-1/2 top-0 w-96 h-96 bg-emerald-400/10 rounded-full blur-[120px] pointer-events-none -translate-x-1/2" />
+        <section id="skills" className="section-shell py-28">
 
             <div className="container mx-auto px-6">
                 <motion.div
@@ -76,11 +74,11 @@ const Skills = () => {
                     viewport={{ once: true }}
                     className="text-center mb-14"
                 >
-                    <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full glass-bright text-neon-cyan text-xs font-bold tracking-widest uppercase mb-4">
-                        <span className="w-1.5 h-1.5 rounded-full bg-neon-cyan animate-pulse" />
+                    <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full glass-bright text-slate-700 text-xs font-semibold tracking-widest uppercase mb-4">
+                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
                         Capabilities
                     </span>
-                    <h2 className="text-3xl md:text-5xl font-bold text-slate-900">
+                    <h2 className="text-3xl md:text-5xl font-semibold text-slate-900 font-display">
                         Technical <span className="text-gradient">Arsenal</span>
                     </h2>
                 </motion.div>
@@ -94,14 +92,14 @@ const Skills = () => {
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
                             className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-semibold transition-all duration-300 ${active === i
-                                ? 'text-slate-900 neon-glow'
+                                ? 'text-slate-900'
                                 : 'glass border border-slate-200/60 text-slate-600 hover:text-slate-900'
                                 }`}
                             style={active === i ? {
-                                backgroundColor: `${cat.accent}20`,
-                                borderColor: `${cat.accent}60`,
-                                boxShadow: `0 0 20px ${cat.accent}40`,
-                                border: `1px solid ${cat.accent}60`
+                                backgroundColor: `${cat.accent}14`,
+                                borderColor: `${cat.accent}40`,
+                                boxShadow: `0 12px 24px ${cat.accent}20`,
+                                border: `1px solid ${cat.accent}40`
                             } : {}}
                         >
                             {cat.emoji} {cat.title}
@@ -125,7 +123,7 @@ const Skills = () => {
                                     key={i}
                                     initial={{ opacity: 0, scale: 0.8 }}
                                     animate={{ opacity: 1, scale: 1 }}
-                                    transition={{ delay: i * 0.06 }}
+                                    transition={{ delay: i * 0.08, duration: 0.4 }}
                                     whileHover={{ scale: 1.08, y: -4 }}
                                     className="skill-chip flex items-center gap-2.5 px-4 py-2.5 rounded-xl cursor-default"
                                     style={{ '--chip-accent': categories[active].accent }}
@@ -145,19 +143,19 @@ const Skills = () => {
                                     key={i}
                                     initial={{ opacity: 0, x: -20 }}
                                     animate={{ opacity: 1, x: 0 }}
-                                    transition={{ delay: i * 0.08 }}
-                                    className="glass rounded-xl p-4 border border-white/5"
+                                    transition={{ delay: i * 0.1, duration: 0.5 }}
+                                    className="glass rounded-xl p-4 border border-slate-200/60"
                                 >
                                     <div className="flex justify-between items-center mb-2">
                                         <div className="flex items-center gap-2">
                                             <span style={{ color: categories[active].accent }}>{skill.icon}</span>
                                             <span className="text-sm font-medium text-slate-700">{skill.name}</span>
                                         </div>
-                                        <span className="text-xs font-bold" style={{ color: categories[active].accent }}>
+                                        <span className="text-xs font-semibold" style={{ color: categories[active].accent }}>
                                             {skill.level}%
                                         </span>
                                     </div>
-                                    <div className="h-1.5 bg-slate-200/80 rounded-full overflow-hidden">
+                                    <div className="h-1.5 bg-slate-200/70 rounded-full overflow-hidden">
                                         <motion.div
                                             initial={{ width: 0 }}
                                             animate={{ width: `${skill.level}%` }}

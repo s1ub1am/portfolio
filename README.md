@@ -29,7 +29,7 @@ A high-performance, responsive portfolio website built with React, Tailwind CSS,
 
 ## Customization
 - **Content**: Edit the components in `src/components/` to update text and links.
-- **Images**: Replace `src/assets/profile.png` with your own image if needed.
+- **Images**: Replace `src/assets/pfp.jpeg` with your own image if needed.
 - **Colors**: Update `tailwind.config.js` or `src/index.css` variables.
 
 ## Deployment to GitHub Pages

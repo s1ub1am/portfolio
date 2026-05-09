@@ -1,29 +1,24 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { FaGithub, FaLinkedin, FaEnvelope, FaHeart } from 'react-icons/fa';
-import { HiSparkles } from 'react-icons/hi2';
+import { FaGithub, FaLinkedin, FaEnvelope } from 'react-icons/fa';
 
 const Footer = () => {
     const currentYear = new Date().getFullYear();
 
     const socials = [
         { href: "https://github.com/s1ub1am", icon: <FaGithub size={18} />, label: "GitHub", color: "#0f766e" },
-        { href: "https://linkedin.com/in/shubhamsabat", icon: <FaLinkedin size={18} />, label: "LinkedIn", color: "#0891b2" },
-        { href: "mailto:shubhamsabat836@gmail.com", icon: <FaEnvelope size={18} />, label: "Email", color: "#7c3aed" },
+        { href: "https://linkedin.com/in/shubhamsabat", icon: <FaLinkedin size={18} />, label: "LinkedIn", color: "#1d4ed8" },
+        { href: "mailto:shubhamsabat836@gmail.com", icon: <FaEnvelope size={18} />, label: "Email", color: "#b45309" },
     ];
 
     return (
-        <footer id="contact" className="relative overflow-hidden py-20">
+        <footer id="contact" className="section-shell py-20 text-center">
             {/* Background */}
             <div className="absolute inset-0 bg-gradient-to-t from-slate-100 via-white/80 to-transparent pointer-events-none" />
-            <div className="absolute inset-0 grid-bg opacity-30 pointer-events-none" />
+            <div className="absolute inset-0 soft-gradient pointer-events-none" />
             <div className="absolute top-0 left-0 right-0 h-px section-divider" />
 
-            {/* Glow orbs */}
-            <div className="absolute left-1/4 top-0 w-64 h-64 bg-emerald-400/10 rounded-full blur-[100px] pointer-events-none" />
-            <div className="absolute right-1/4 bottom-0 w-64 h-64 bg-amber-300/10 rounded-full blur-[100px] pointer-events-none" />
-
-            <div className="container mx-auto px-6 relative z-10 text-center">
+            <div className="container mx-auto px-6 relative z-10">
                 {/* Heading */}
                 <motion.div
                     initial={{ opacity: 0, y: 30 }}
@@ -31,26 +26,31 @@ const Footer = () => {
                     viewport={{ once: true }}
                     className="mb-12"
                 >
-                    <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full glass-bright text-neon-blue text-xs font-bold tracking-widest uppercase mb-6">
-                        <HiSparkles size={12} className="text-neon-blue animate-pulse" />
-                        Get In Touch
+                    <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full glass-bright text-slate-700 text-xs font-semibold tracking-widest uppercase mb-6">
+                        Contact
                     </span>
-                    <h2 className="text-4xl md:text-6xl font-bold text-slate-900 mb-4">
-                        Let's Build Something
+                    <h2 className="text-4xl md:text-5xl font-semibold text-slate-900 mb-4 font-display">
+                        Have an idea in mind?
                         <br />
-                        <span className="text-gradient">Amazing Together</span>
+                        <span className="text-gradient">Let&apos;s build it well.</span>
                     </h2>
-                    <p className="text-slate-600 text-lg max-w-md mx-auto mb-8">
-                        Open to exciting opportunities, collaborations, and building the future with AI.
+                    <p className="text-slate-600 text-base md:text-lg max-w-xl mx-auto mb-8 leading-relaxed">
+                        I work on AI and full-stack products with a focus on clear UX, maintainable code, and production reliability.
                     </p>
+
+                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full glass text-xs text-slate-600 mb-8">
+                        Based in India
+                        <span className="w-1 h-1 rounded-full bg-slate-400" />
+                        Usually replies within 24 hours
+                    </div>
 
                     <motion.a
                         href="mailto:shubhamsabat836@gmail.com"
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
-                        className="inline-flex items-center gap-2 shimmer-btn px-8 py-4 rounded-2xl text-white font-bold text-lg shadow-xl shadow-emerald-500/30"
+                        className="inline-flex items-center gap-2 shimmer-btn px-8 py-3.5 rounded-2xl font-semibold text-base"
                     >
-                        <FaEnvelope /> Say Hello 👋
+                        <FaEnvelope /> Email Shubham
                     </motion.a>
                 </motion.div>
 
@@ -71,10 +71,9 @@ const Footer = () => {
                             whileHover={{ scale: 1.2, y: -4 }}
                             whileTap={{ scale: 0.9 }}
                             className="w-12 h-12 rounded-2xl glass flex items-center justify-center text-slate-600 transition-all duration-300 border border-slate-200/60"
-                            style={{}}
                             onMouseEnter={(e) => {
                                 e.currentTarget.style.color = social.color;
-                                e.currentTarget.style.boxShadow = `0 0 20px ${social.color}40`;
+                                e.currentTarget.style.boxShadow = `0 10px 22px ${social.color}30`;
                                 e.currentTarget.style.borderColor = `${social.color}40`;
                             }}
                             onMouseLeave={(e) => {
@@ -92,20 +91,38 @@ const Footer = () => {
                 {/* Divider */}
                 <div className="section-divider mb-8 max-w-xs mx-auto" />
 
+                <div className="flex justify-center gap-6 text-xs uppercase tracking-[0.2em] text-slate-500 mb-8">
+                    {[
+                        { label: 'About', href: '#about' },
+                        { label: 'Projects', href: '#projects' },
+                        { label: 'Top', href: '#hero' },
+                    ].map((item) => (
+                        <a
+                            key={item.label}
+                            href={item.href}
+                            onClick={(e) => {
+                                e.preventDefault();
+                                document.getElementById(item.href.replace('#', ''))?.scrollIntoView({ behavior: 'smooth' });
+                            }}
+                            className="hover:text-slate-800 transition-colors"
+                        >
+                            {item.label}
+                        </a>
+                    ))}
+                </div>
+
                 {/* Copyright */}
                 <motion.p
                     initial={{ opacity: 0 }}
                     whileInView={{ opacity: 1 }}
                     viewport={{ once: true }}
-                    className="text-slate-500 text-sm flex items-center justify-center gap-1.5"
+                    className="text-slate-500 text-sm"
                 >
-                    © {currentYear} Shubham Sabat. Crafted with
-                    <FaHeart className="text-rose-500 text-xs animate-pulse" />
-                    and lots of coffee ☕
+                    © {currentYear} Shubham Sabat
                 </motion.p>
 
                 <p className="text-slate-500 text-xs mt-2 font-mono">
-                    Building intelligent systems, one commit at a time.
+                    AI Engineer at TCS · Full-Stack Builder
                 </p>
             </div>
         </footer>
